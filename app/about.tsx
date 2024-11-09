@@ -1,18 +1,19 @@
-import { Text } from "react-native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Index = () => {
+const About = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>DIVES LIST</Text>
-      <Link href="/about" style={styles.button}>
-        Go to About screen
+      <Text style={styles.text}>ABOUT</Text>
+      <Link href="/" style={styles.button}>
+        Back to Home screen
       </Link>
     </SafeAreaView>
   );
 };
+
+export default About;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,5 +34,3 @@ const styles = StyleSheet.create({
     color: "#e9e9e2",
   },
 });
-
-export default Index;
