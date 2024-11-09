@@ -7,7 +7,7 @@ const About = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>ABOUT</Text>
       <Link href="/" style={styles.button}>
-        Back to Home screen
+        Back to Dives list
       </Link>
     </SafeAreaView>
   );

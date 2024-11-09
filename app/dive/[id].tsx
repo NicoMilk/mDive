@@ -1,27 +1,20 @@
-import { Text } from "react-native";
-import { StyleSheet } from "react-native";
-import { Link } from "expo-router";
+import { StyleSheet, Text } from "react-native";
+import { Link, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Index = () => {
+const SingleDive = () => {
+  const params = useLocalSearchParams();
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>DIVES LIST</Text>
-      <Link
-        href={{
-          pathname: "/dive/[id]",
-          params: { id: 3 },
-        }}
-        style={styles.button}
-      >
-        Dive #3
-      </Link>
-      <Link href="/about" style={styles.button}>
-        Go to About screen
+      <Text style={styles.text}>DIVE #{params.id}</Text>
+      <Link href="/" style={styles.button}>
+        Back to Dives list
       </Link>
     </SafeAreaView>
   );
 };
+
+export default SingleDive;
 
 const styles = StyleSheet.create({
   container: {
@@ -42,5 +35,3 @@ const styles = StyleSheet.create({
     color: "#e9e9e2",
   },
 });
-
-export default Index;
