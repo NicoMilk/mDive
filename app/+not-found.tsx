@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textDecorationLine: "underline",
     color: "#e9e9e2",
-    fontFamily: "Nunito_400Regular",
   },
 });

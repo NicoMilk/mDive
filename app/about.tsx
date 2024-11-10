@@ -24,12 +24,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    fontFamily: "Nunito_400Regular",
     color: "#e9e9e2",
   },
   button: {
     fontSize: 16,
-    fontFamily: "Nunito_400Regular",
     textDecorationLine: "underline",
     color: "#e9e9e2",
   },

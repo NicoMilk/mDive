@@ -1,24 +1,19 @@
-import { Text } from "react-native";
 import { StyleSheet } from "react-native";
-import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useThemeColors } from "@/hooks/useThemeColors";
+import { ThemedText } from "@/components/ThemedText";
+import { Card } from "@/components/Card";
 
 const Index = () => {
+  const colors = useThemeColors();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>DIVES LIST</Text>
-      <Link
-        href={{
-          pathname: "/dive/[id]",
-          params: { id: 3 },
-        }}
-        style={styles.button}
-      >
-        Dive #3
-      </Link>
-      <Link href="/about" style={styles.button}>
-        Go to About screen
-      </Link>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.tint }]}>
+      <Card>
+        <ThemedText variant="headline" color="eigengrau">
+          mDive
+        </ThemedText>
+      </Card>
     </SafeAreaView>
   );
 };
@@ -26,20 +21,6 @@ const Index = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#346ba0",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 22,
-    fontFamily: "Nunito_400Regular",
-    color: "#e9e9e2",
-  },
-  button: {
-    fontSize: 16,
-    fontFamily: "Nunito_400Regular",
-    textDecorationLine: "underline",
-    color: "#e9e9e2",
   },
 });
 
