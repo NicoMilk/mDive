@@ -20,5 +20,5 @@ export const Card = ({ style, ...rest }: Props) => {
 };
 
 const styles = {
-  borderRadius: 8,
+  borderRadius: 2,
 } satisfies ViewStyle;
