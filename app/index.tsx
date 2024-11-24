@@ -1,37 +1,48 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useThemeColors } from "@/hooks/useThemeColors";
 import { ThemedText } from "@/components/ThemedText";
-import { Card } from "@/components/Card";
-import ListCard from "@/components/ListCard";
-import { mockDivesList } from "@/mocks";
+import LoginForm from "@/components/LoginForm";
+import Divelist from "@/components/Divelist";
+import { useAtom } from "jotai";
+import { bearerTokenAtom } from "../hooks/useFetch";
+import * as SecureStore from "expo-secure-store";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const Index = () => {
+  const [bearerToken, setBearerToken] = useAtom(bearerTokenAtom);
   const colors = useThemeColors();
 
+  const logout = async () => {
+    await SecureStore.deleteItemAsync("bearer_token");
+    setBearerToken(null); // Clears the token in the atom
+  };
+
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.tint }]}>
-      <View style={styles.header}>
-        <ThemedText variant="headline" color="iEigengrau">
-          mDive
-        </ThemedText>
-      </View>
-      {/* <Card style={styles.body}> */}
-      <FlatList
-        keyExtractor={(item) => item.id.toString()}
-        data={mockDivesList}
-        renderItem={({ item }) => (
-          <ListCard
-            divenumber={parseInt(item.divenumber)}
-            location={item.location}
-            date={new Date(item.date)}
-            maxdepth={item.maxdepth}
-            length={58}
-          />
+    <>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.tint }]}
+      >
+        <View style={styles.header}>
+          <ThemedText variant="headline" color="iEigengrau">
+            mDive
+          </ThemedText>
+          {bearerToken && (
+            <Pressable style={styles.buttonLogout} onPress={logout}>
+              <AntDesign name="logout" size={15} color="#16161d" />
+            </Pressable>
+          )}
+        </View>
+
+        {bearerToken ? (
+          <Divelist />
+        ) : (
+          <>
+            <LoginForm />
+          </>
         )}
-      />
-      {/* </Card> */}
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 
@@ -42,11 +53,21 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     gap: 16,
     padding: 12,
   },
+  // TODO body toujours nécessaire ?
   body: { flex: 1 },
+  buttonLogout: {
+    backgroundColor: "#e9e9e2",
+    width: 25,
+    height: 25,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default Index;

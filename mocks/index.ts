@@ -1,4 +1,4 @@
-export const mockDivesList = [
+export const mockDiveList = [
   {
     id: "3905479",
     divenumber: "280",
